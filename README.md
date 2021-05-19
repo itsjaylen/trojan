@@ -8,3 +8,5 @@ Download the requirments, bat file, and script then run.
 
 Custom args:
 To get a icon must be ico: --icon (direct path to the icon)
+
+Or just use ez complier to complie
