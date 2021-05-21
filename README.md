@@ -10,3 +10,4 @@ Custom args:
 To get a icon must be ico: --icon (direct path to the icon)
 
 Or just use ez complier to complie
+**BROKEN ATM**
