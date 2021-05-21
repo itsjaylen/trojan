@@ -11,3 +11,7 @@ To get a icon must be ico: --icon (direct path to the icon)
 
 Or just use ez complier to complie
 **BROKEN ATM**
+
+
+**Projects Used**
+https://github.com/wodxgod/Discord-Token-Grabber/blob/master/token-grabber.py
