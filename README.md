@@ -8,6 +8,7 @@ Download the requirments, bat file, and script then run.
 
 Custom args:
 To get a icon must be ico: --icon (direct path to the icon)
+To force to be ran as admin use --uac-admin
 
 Or just use ez complier to complie
 **BROKEN ATM**
