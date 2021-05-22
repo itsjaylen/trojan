@@ -1,2 +1,5 @@
+pyarmor
 psutil
 mouse
+playsound
+requests
