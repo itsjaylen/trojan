@@ -3,3 +3,4 @@ psutil
 mouse
 playsound
 requests
+win32api
