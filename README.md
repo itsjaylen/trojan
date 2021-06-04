@@ -16,3 +16,5 @@ Or just use ez complier to complie
 
 **Projects Used**
 https://github.com/wodxgod/Discord-Token-Grabber/blob/master/token-grabber.py
+
+**Lost res changer**
